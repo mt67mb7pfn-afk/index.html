@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="青葉自動車学校のキャンセル待ち抽選参加方法のご案内。公式LINEからエントリーできます。">
+<title>キャンセル待ち抽選参加方法｜青葉自動車学校</title>
+
+<!--
+  ================================================================
+  青葉自動車学校 キャンセル待ち抽選 参加方法ページ
+  GitHub Pages 公開用サンプル（グリーンテーマ）
+
+  ★ LINEのQRコード画像は、お手元の画像を同じフォルダに置き、
+     img タグの src を画像ファイル名に書き換えてください。
+     （例：src="line-qr.png"）
+  ★ 公式LINEの友だち追加URLがあれば、
+     「公式LINEを開く」ボタンの href に入れてください。
+  ================================================================
+-->
+
+<style>
+  :root{
+    --brand:#3ba55c;
+    --brand-dark:#2d7a3d;
+    --brand-light:#a8d5a1;
+    --brand-bg:#f1f8ed;
+    --accent:#ffb62a;
+    --accent-dark:#e69d00;
+    --warn:#e89b5c;
+    --warn-bg:#fff4e9;
+    --warn-dark:#b85a16;
+    --text:#2a2f27;
+    --muted:#6a736a;
+    --line:#d9e6d5;
+    --white:#ffffff;
+    --line-green:#06c755; /* LINE公式色 */
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
+    color:var(--text);
+    background:#fff;
+    line-height:1.8;
+    -webkit-text-size-adjust:100%;
+  }
+  a{color:var(--brand-dark)}
+
+  /* === ヘッダー === */
+  .page-hero{
+    position:relative;
+    background:linear-gradient(135deg,#4cbf6e 0%,#3ba55c 55%,#2d7a3d 100%);
+    color:#fff;
+    padding:64px 20px 72px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .page-hero::before{
+    content:"";
+    position:absolute;
+    top:-80px; right:-60px;
+    width:260px; height:260px;
+    background:radial-gradient(circle at 30% 70%, rgba(255,255,255,.18), transparent 60%);
+    border-radius:50%;
+    pointer-events:none;
+  }
+  .page-hero::after{
+    content:"";
+    position:absolute;
+    bottom:-60px; left:-40px;
+    width:200px; height:200px;
+    background:radial-gradient(circle at 70% 30%, rgba(255,255,255,.12), transparent 60%);
+    border-radius:50%;
+    pointer-events:none;
+  }
+  .page-hero h1{
+    margin:0 0 10px;
+    font-size:28px;
+    letter-spacing:.08em;
+    position:relative;
+    z-index:1;
+  }
+  .page-hero .sub{
+    margin:0;
+    font-size:15px;
+    opacity:.95;
+    position:relative;
+    z-index:1;
+  }
+
+  /* === 共通 === */
+  .wrap{
+    max-width:860px;
+    margin:0 auto;
+    padding:0 20px;
+  }
+
+  /* === イントロ === */
+  .intro{
+    padding:48px 0 24px;
+  }
+  .intro p{
+    margin:0 0 1em;
+    font-size:15px;
+  }
+
+  /* === ステップ === */
+  .steps{
+    display:grid;
+    gap:24px;
+    padding-bottom:32px;
+  }
+  .step{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 6px 18px rgba(59,165,92,.08);
+  }
+  .step-head{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:16px 20px;
+    background:linear-gradient(90deg,var(--brand) 0%,var(--brand-dark) 100%);
+    color:#fff;
+  }
+  .step-num{
+    width:44px; height:44px;
+    flex-shrink:0;
+    border-radius:50%;
+    background:var(--accent);
+    color:#4a3400;
+    font-size:22px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 2px 6px rgba(0,0,0,.15);
+  }
+  .step-title{
+    margin:0;
+    font-size:18px;
+    letter-spacing:.02em;
+  }
+  .step-body{
+    padding:20px 22px;
+    background:linear-gradient(180deg,var(--brand-bg) 0%,#fff 80px);
+  }
+  .step-body p{
+    margin:0 0 12px;
+    font-size:15px;
+  }
+  .step-body p:last-child{margin-bottom:0}
+
+  /* 入力項目リスト（ステップ②用） */
+  .fields{
+    margin:14px 0 16px;
+    padding:0;
+    list-style:none;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .fields li{
+    background:var(--white);
+    border:1px solid var(--brand-light);
+    color:var(--brand-dark);
+    font-weight:700;
+    padding:8px 16px;
+    border-radius:999px;
+    font-size:14px;
+  }
+
+  /* 時刻カード（ステップ③用） */
+  .times{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin:14px 0 16px;
+  }
+  .time-card{
+    background:var(--white);
+    border:2px solid var(--brand);
+    border-radius:12px;
+    padding:16px 18px;
+  }
+  .time-card h4{
+    margin:0 0 10px;
+    font-size:14px;
+    color:var(--brand-dark);
+    border-bottom:1px solid var(--brand-light);
+    padding-bottom:6px;
+  }
+  .time-card .pair{
+    display:flex;
+    justify-content:space-between;
+    font-size:14px;
+    margin:4px 0;
+  }
+  .time-card .pair span:last-child{
+    font-weight:700;
+    color:var(--brand-dark);
+  }
+
+  /* 注意書き */
+  .notes{
+    margin-top:4px;
+    padding:14px 16px;
+    background:var(--warn-bg);
+    border-left:4px solid var(--warn);
+    border-radius:6px;
+    font-size:14px;
+  }
+  .notes p{
+    margin:6px 0;
+    display:flex;
+    gap:6px;
+  }
+  .notes p::before{
+    content:"※";
+    color:var(--warn-dark);
+    font-weight:700;
+    flex-shrink:0;
+  }
+  .notes strong{color:var(--warn-dark)}
+
+  /* LINE案内セクション */
+  .line-section{
+    margin:40px 0 48px;
+    background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);
+    color:#fff;
+    border-radius:16px;
+    padding:32px 28px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(45,122,61,.25);
+  }
+  .line-section h2{
+    margin:0 0 12px;
+    font-size:22px;
+  }
+  .line-section p{
+    margin:0 0 20px;
+    opacity:.95;
+    font-size:15px;
+  }
+  .qr-wrap{
+    display:inline-block;
+    background:#fff;
+    padding:14px;
+    border-radius:12px;
+    margin-bottom:16px;
+  }
+  .qr-wrap img{
+    display:block;
+    width:180px;
+    height:180px;
+    object-fit:contain;
+  }
+  .qr-label{
+    display:block;
+    margin-top:6px;
+    font-size:12px;
+    color:var(--text);
+    text-align:center;
+    font-weight:700;
+  }
+  .line-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 28px;
+    background:var(--line-green);
+    color:#fff;
+    border-radius:999px;
+    text-decoration:none;
+    font-weight:700;
+    font-size:16px;
+    margin-top:8px;
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+    transition:transform .15s ease;
+  }
+  .line-btn:hover{transform:translateY(-2px)}
+
+  footer{
+    padding:28px 20px 36px;
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+    background:var(--brand-bg);
+    border-top:1px solid var(--line);
+  }
+
+  /* スマホ */
+  @media (max-width:640px){
+    .page-hero{padding:44px 16px 52px}
+    .page-hero h1{font-size:22px}
+    .intro{padding:32px 0 16px}
+    .step-num{width:38px;height:38px;font-size:18px}
+    .step-title{font-size:16px}
+    .step-body{padding:18px 16px}
+    .times{grid-template-columns:1fr}
+    .line-section{padding:24px 18px}
+    .line-section h2{font-size:20px}
+    .qr-wrap img{width:150px;height:150px}
+  }
+</style>
+</head>
+<body>
+
+<header class="page-hero">
+  <h1>キャンセル待ち抽選 参加方法</h1>
+  <p class="sub">公式LINEから、どなたでも簡単にエントリーいただけます</p>
+</header>
+
+<main class="wrap">
+
+  <section class="intro">
+    <p>
+      青葉自動車学校では、キャンセルが出た技能教習の枠を、公式LINEからの抽選エントリー方式でご案内しています。
+      下記の手順に沿ってエントリーをお願いします。
+    </p>
+  </section>
+
+  <!-- === 手順 === -->
+  <section class="steps">
+
+    <!-- ステップ① -->
+    <article class="step">
+      <header class="step-head">
+        <div class="step-num">1</div>
+        <h2 class="step-title">公式LINEメニューからエントリー画面を開く</h2>
+      </header>
+      <div class="step-body">
+        <p>青葉自動車学校 公式LINEアカウントのメニューから<strong>「キャンセル待ち抽選エントリー」</strong>を選択してください。</p>
+      </div>
+    </article>
+
+    <!-- ステップ② -->
+    <article class="step">
+      <header class="step-head">
+        <div class="step-num">2</div>
+        <h2 class="step-title">受付フォームに必要事項を入力</h2>
+      </header>
+      <div class="step-body">
+        <p>以下の3項目を入力して送信してください。</p>
+        <ul class="fields">
+          <li>教習生番号</li>
+          <li>氏名（カタカナで記入）</li>
+          <li>車種</li>
+        </ul>
+        <div class="notes">
+          <p>入力を間違えないようにご注意ください。誤りがあった場合には<strong>無効となる可能性</strong>があります。</p>
+          <p>MT第一段階の方で「次回AT」と伝えられた方は、車種選択は<strong>AT</strong>を選んでください。</p>
+          <p>複数回エントリーした場合は、<strong>最後の送信分</strong>が適用されます。</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- ステップ③ -->
+    <article class="step">
+      <header class="step-head">
+        <div class="step-num">3</div>
+        <h2 class="step-title">エントリー締め切り時間・結果公表</h2>
+      </header>
+      <div class="step-body">
+        <div class="times">
+          <div class="time-card">
+            <h4>平日（前日受付）</h4>
+            <div class="pair"><span>締め切り</span><span>17:59</span></div>
+            <div class="pair"><span>結果公表</span><span>20:00</span></div>
+          </div>
+          <div class="time-card">
+            <h4>日・祝日（当日受付）</h4>
+            <div class="pair"><span>締め切り</span><span>14:39</span></div>
+            <div class="pair"><span>結果公表</span><span>16:40</span></div>
+          </div>
+        </div>
+        <div class="notes">
+          <p>休校日を挟む場合は、<strong>前営業日の14:39</strong>が締め切りとなります。</p>
+          <p>MTとATは分けて抽選・公表を行っています。</p>
+          <p>MTとATは、<strong>各上位40人ずつのみ</strong>公表いたします。</p>
+          <p>翌営業日分のみの受付です。数日先の受付はいたしません。</p>
+          <p>締め切りは、受付フォームが受信した時間で判断します。時間に余裕をもって入力してください。</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- ステップ④ -->
+    <article class="step">
+      <header class="step-head">
+        <div class="step-num">4</div>
+        <h2 class="step-title">結果の確認</h2>
+      </header>
+      <div class="step-body">
+        <p>抽選結果は、公式LINEのメニュー内にある<strong>「キャンセル待ち結果」</strong>で確認できます。</p>
+      </div>
+    </article>
+
+    <!-- ステップ⑤ -->
+    <article class="step">
+      <header class="step-head">
+        <div class="step-num">5</div>
+        <h2 class="step-title">その他の注意点</h2>
+      </header>
+      <div class="step-body">
+        <div class="notes">
+          <p>抽選結果は、<strong>1日有効</strong>です。</p>
+          <p>システムの不具合等でエントリーできなかった場合の補償はございません。あらかじめご了承ください。</p>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- === LINE案内 === -->
+  <section class="line-section">
+    <h2>公式LINEから参加</h2>
+    <p>下のQRコードを読み取って、青葉自動車学校公式LINEを友だち追加してください。</p>
+
+    <div class="qr-wrap">
+      <!-- ★QR画像を同じフォルダに置いて、ファイル名を src に指定してください -->
+      <img src="line-qr.png" alt="青葉自動車学校 公式LINE QRコード">
+      <span class="qr-label">公式LINE</span>
+    </div>
+
+    <!-- ★公式LINEの友だち追加URLが分かる場合は href に差し替えてください -->
+    <div>
+      <a class="line-btn" href="#" target="_blank" rel="noopener">
+        📱 公式LINEを開く
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  青葉自動車学校　〒227-0043　神奈川県横浜市青葉区藤が丘1-23-14　TEL 045-973-3113
+</footer>
+
+</body>
+</html>
